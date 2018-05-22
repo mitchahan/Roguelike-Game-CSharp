@@ -5,10 +5,9 @@ The website can be found here: https://roguesharp.wordpress.com/
 ## Libraries
 This Project was created using multiple libraries in Visual Studio
 
-```
-[RLNET](https://bitbucket.org/clarktravism/rlnet/) - 
-[RogueSharp](https://bitbucket.org/FaronBracy/roguesharp) - 
-```
+* [RLNET](https://bitbucket.org/clarktravism/rlnet/)
+* [RogueSharp](https://bitbucket.org/FaronBracy/roguesharp) 
+
 ## Current Functionality
 * Movement - The player '@' can move around the dungeon and fight Monsters
 * Basic Combat - The player and monsters can fight by ramming into each other repeadetly
