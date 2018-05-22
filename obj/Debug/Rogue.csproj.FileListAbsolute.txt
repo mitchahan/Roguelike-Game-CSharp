@@ -1,0 +1,15 @@
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\terminal8x8.png
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\Rogue.exe.config
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\Rogue.exe
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\Rogue.pdb
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\OpenTK.dll
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\RLNET.dll
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\RogueSharp.dll
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\OpenTK.xml
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\OpenTK.dll.config
+C:\Users\Mitch H\Documents\Rogue\Rogue\bin\Debug\RogueSharp.xml
+C:\Users\Mitch H\Documents\Rogue\Rogue\obj\Debug\Rogue.csprojAssemblyReference.cache
+C:\Users\Mitch H\Documents\Rogue\Rogue\obj\Debug\Rogue.csproj.CoreCompileInputs.cache
+C:\Users\Mitch H\Documents\Rogue\Rogue\obj\Debug\Rogue.csproj.CopyComplete
+C:\Users\Mitch H\Documents\Rogue\Rogue\obj\Debug\Rogue.exe
+C:\Users\Mitch H\Documents\Rogue\Rogue\obj\Debug\Rogue.pdb
