@@ -21,5 +21,5 @@ This Project was created using multiple libraries in Visual Studio
 * The ability to pick up items (gold) off of enemies
 * add armor and a shop to the game
 
-## Further Developement
-* **Mitch Hansen** - *Post work* - [mitchahan](https://github.com/mitchahan)
+## Further Developement of Tutorial
+* **Mitch Hansen** - *Main Developer* - [mitchahan](https://github.com/mitchahan)
