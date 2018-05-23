@@ -19,6 +19,3 @@ This Project was created using multiple libraries in Visual Studio
 * An acceptable start screen and home room
 * The ability to pick up items (gold) off of enemies
 * add armor and a shop to the game
-
-## Further Developement of Tutorial Code for own Purposes
-* **Mitch Hansen** - *Main Developer* - [mitchahan](https://github.com/mitchahan)
