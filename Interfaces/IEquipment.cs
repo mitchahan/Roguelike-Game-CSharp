@@ -3,20 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RLNET;
-using RogueSharp;
-using Rogue.Equipment;
-
 
 namespace Rogue.Interfaces
 {
-    public interface IActor
+    public interface IEquipment
     {
-        HeadEquipment Head { get; set; }
-        BodyEquipment Body { get; set; }
-        HandEquipment Hand { get; set; }
-        FeetEquipment Feet { get; set; }
-
         int Attack { get; set; }
         int AttackChance { get; set; }
         int Awareness { get; set; }

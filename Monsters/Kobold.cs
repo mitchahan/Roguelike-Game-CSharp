@@ -7,6 +7,7 @@ using Rogue.Core;
 using RLNET;
 using RogueSharp;
 using RogueSharp.DiceNotation;
+using Rogue.Equipment;
 
 namespace Rogue.Monsters
 {
@@ -15,6 +16,7 @@ namespace Rogue.Monsters
         public static Kobold Create(int level)
         {
             int health = Dice.Roll("2D5");
+            //HandEquipment hand = HandEquipment.Dagger(); // For Testing
             return new Kobold
             {
                 Attack = Dice.Roll("1D3") + level / 3,
@@ -28,7 +30,7 @@ namespace Rogue.Monsters
                 MaxHealth = health * level,
                 Name = "Kobold",
                 Speed = 14,
-                Symbol = 'k'
+                Symbol = 'k',
             };
         }
     }

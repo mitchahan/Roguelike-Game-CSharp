@@ -15,6 +15,7 @@ namespace Rogue
         private static readonly int _screenWidth = 200;
         private static readonly int _screenHeight = 100;
         private static RLRootConsole _rootConsole;
+        
 
         // The map console takes up most of the screen and is where the map will be drawn
         private static readonly int _mapWidth = 180;
@@ -48,7 +49,7 @@ namespace Rogue
         public static IRandom Random { get; private set; }
 
         public static MessageLog MessageLog { get; private set; }
-        public static readonly bool home;
+        private static int _mapLevel = 1;
 
 
         //private static int _steps = 0;
@@ -63,7 +64,7 @@ namespace Rogue
             string fontFileName = "terminal8x8.png";
 
             // The title will appear at the top of the console window along with the seed used to generate the level
-            string consoleTitle = $"Rouge - Level 1 - Seed {seed}";
+            string consoleTitle = $"Rouge - Level {_mapLevel} - Seed {seed}";
 
             SchedulingSystem = new SchedulingSystem();
 
@@ -81,7 +82,7 @@ namespace Rogue
             _statConsole = new RLConsole(_statWidth, _statHeight);
             _inventoryConsole = new RLConsole(_inventoryWidth, _inventoryHeight);
 
-            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 40, 22, 7, home);
+            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 40, 22, 7, _mapLevel);
             DungeonMap = mapGenerator.CreateMap();
             DungeonMap.UpdatePlayerFieldOfView();
 
@@ -93,8 +94,8 @@ namespace Rogue
             // Set up a handler for RLNET's Render event
             _rootConsole.Render += OnRootConsoleRender;
 
-            _inventoryConsole.SetBackColor(0, 0, _inventoryWidth, _inventoryHeight, Swatch.DbWood);
-            _inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
+            //_inventoryConsole.SetBackColor(0, 0, _inventoryWidth, _inventoryHeight, Swatch.DbWood);
+           // _inventoryConsole.Print(1, 1, "Inventory", Colors.TextHeading);
 
             // Begin RLNET's game loop
             _rootConsole.Run();
@@ -135,11 +136,11 @@ namespace Rogue
                     {
                         if (DungeonMap.CanMoveDownToNextLevel())
                         {
-                            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, home);
+                            MapGenerator mapGenerator = new MapGenerator(_mapWidth, _mapHeight, 20, 13, 7, ++_mapLevel);
                             DungeonMap = mapGenerator.CreateMap();
                             MessageLog = new MessageLog();
                             CommandSystem = new CommandSystem();
-                            _rootConsole.Title = $"Welcome Home!";
+                            _rootConsole.Title = $"Rogue - Level {_mapLevel}";
                             didPlayerAct = true;
                         }
                     }
@@ -166,10 +167,12 @@ namespace Rogue
                 _mapConsole.Clear();
                 _statConsole.Clear();
                 _messageConsole.Clear();
+                _inventoryConsole.Clear();
 
                 DungeonMap.Draw(_mapConsole, _statConsole);
                 Player.Draw(_mapConsole, DungeonMap);
                 Player.DrawStats(_statConsole, _statWidth, _statHeight);
+                Player.DrawInventory(_inventoryConsole);
                 MessageLog.Draw(_messageConsole, _messageWidth, _messageHeight);
 
                 // Blit the sub consoles to the root console in the correct locations
@@ -184,5 +187,6 @@ namespace Rogue
                 _renderRequired = false;
             }
         }
+
     }
 }

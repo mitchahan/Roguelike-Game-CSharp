@@ -11,6 +11,7 @@ using RogueSharp.DiceNotation;
 using Rogue.Interfaces;
 using Rogue.Behaviors;
 using Rogue.Monsters;
+using Rogue.Equipment;
 
 namespace Rogue.Systems
 {
@@ -198,13 +199,19 @@ namespace Rogue.Systems
         {
             if (defender is Player)
             {
+                defender.Health = 0;
                 Game.MessageLog.Add($"  {defender.Name} was killed, GAME OVER MAN!");
+                //Temporary code for now, add splash screen later?
+                Environment.Exit(0);
             }
             else if (defender is Monster)
             {
                 Game.DungeonMap.RemoveMonster((Monster)defender);
                 Game.MessageLog.Add($"  {defender.Name} was slashed to bits!!");
                 Game.MessageLog.Add($" {defender.Name} dropped {defender.Gold} gold!");
+                Game.Player.Gold += defender.Gold;
+                Game.MessageLog.Add($" {defender.Name} dropped {defender.Hand.Name}!");
+                Game.Player.Hand = defender.Hand;
             }
         }
 

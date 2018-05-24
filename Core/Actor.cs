@@ -6,13 +6,28 @@ using System.Threading.Tasks;
 using RLNET;
 using RogueSharp;
 using Rogue.Interfaces;
-using Rogue;
+using Rogue.Equipment;
 
 
 namespace Rogue.Core
 {
     public class Actor : IActor, IDrawable, IScheduleable
     {
+
+        public Actor()
+        {
+            Head = HeadEquipment.None();
+            Body = BodyEquipment.None();
+            Hand = HandEquipment.None();
+            Feet = FeetEquipment.None();
+        }
+
+        // IActor
+        public HeadEquipment Head { get; set; }
+        public BodyEquipment Body { get; set; }
+        public HandEquipment Hand { get; set; }
+        public FeetEquipment Feet { get; set; }
+
         // IDrawable
         public RLColor Color { get; set; }
         public char Symbol { get; set; }

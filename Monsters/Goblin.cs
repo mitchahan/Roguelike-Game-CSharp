@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rogue.Core;
+using Rogue.Equipment;
 using RLNET;
 using RogueSharp;
 using RogueSharp.DiceNotation;
@@ -14,7 +15,8 @@ namespace Rogue.Monsters
     {
         public static Goblin Create(int level)
         {
-            int health = Dice.Roll("2D5");
+
+            int health = Dice.Roll("2D6");
             return new Goblin
             {
                 Attack = Dice.Roll("1D4") + level / 3,
@@ -28,7 +30,7 @@ namespace Rogue.Monsters
                 MaxHealth = health * level + level,
                 Name = "Goblin",
                 Speed = 14,
-                Symbol = 'G'
+                Symbol = 'G',
             };
         }
     }

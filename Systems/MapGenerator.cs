@@ -16,12 +16,12 @@ namespace Rogue.Systems
         private readonly int _maxRooms;
         private readonly int _roomMaxSize;
         private readonly int _roomMinSize;
-        private readonly bool _home;
+        
 
         private readonly DungeonMap _map;
 
         // Constructing a new MapGenerator requires the dimensions of the maps it will create
-        public MapGenerator(int width, int height, int maxRooms, int roomMaxSize, int roomMinSize, bool home)
+        public MapGenerator(int width, int height, int maxRooms, int roomMaxSize, int roomMinSize, int mapLevel)
         {
             _width = width;
             _height = height;
@@ -29,15 +29,22 @@ namespace Rogue.Systems
             _roomMaxSize = roomMaxSize;
             _roomMinSize = roomMinSize;
             _map = new DungeonMap();
-            _home = home;
+            //_mapLevel = mapLevel;
         }
 
-        private void CreateExit()
+        private void CreateStairs()
         {
-            _map.ExitDoor = new Exit
-            { // Watch out
+            _map.StairsUp = new Stairs
+            {
+                X = _map.Rooms.First().Center.X + 1,
+                Y = _map.Rooms.First().Center.Y,
+                IsUp = true
+            };
+            _map.StairsDown = new Stairs
+            {
                 X = _map.Rooms.Last().Center.X,
                 Y = _map.Rooms.Last().Center.Y,
+                IsUp = false
             };
         }
 
@@ -106,7 +113,7 @@ namespace Rogue.Systems
                 CreateDoors(room);
             }
 
-            CreateExit();
+            CreateStairs();
 
             PlacePlayer();
 
@@ -176,12 +183,12 @@ namespace Rogue.Systems
                         {
                             // Temporarily hard code this monster to be created at level 1
 
-                            var typeOfMonster = Dice.Roll("1D4");
+                            var typeOfMonster = Dice.Roll("1D10");
                             var monster = new Monster();
-                            if (typeOfMonster <=2)
+                            if (typeOfMonster <=8)
                             {
                                 monster = Kobold.Create(1);
-                            } else if (typeOfMonster > 2)
+                            } else if (typeOfMonster > 8)
                             {
                                 monster = Goblin.Create(1);
                             }// Add more monsters later

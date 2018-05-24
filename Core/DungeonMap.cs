@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using RLNET;
+using Rogue.Equipment;
 using RogueSharp;
 
 namespace Rogue.Core
@@ -12,7 +14,8 @@ namespace Rogue.Core
 
         public List<Rectangle> Rooms;
         public List<Door> Doors { get; set; }
-        public Exit ExitDoor { get; set; }
+        public Stairs StairsUp { get; set; }
+        public Stairs StairsDown { get; set; }
 
         public DungeonMap()
         {
@@ -42,7 +45,7 @@ namespace Rogue.Core
         public bool CanMoveDownToNextLevel()
         {
             Player player = Game.Player;
-            return ExitDoor.X == player.X && ExitDoor.Y == player.Y;
+            return StairsDown.X == player.X && StairsDown.Y == player.Y;
         }
 
         // Returns true when able to place the Actor on the cell or false otherwise
@@ -80,6 +83,7 @@ namespace Rogue.Core
 
         public void AddMonster(Monster monster)
         {
+            monster.Hand = returnChance();
             _monsters.Add(monster);
             // After adding the monster to the map make sure to make the cell not walkable
             SetIsWalkable(monster.X, monster.Y, false);
@@ -159,7 +163,8 @@ namespace Rogue.Core
                 door.Draw(mapConsole, this);
             }
 
-            ExitDoor.Draw(mapConsole, this);
+            StairsUp.Draw(mapConsole, this);
+            StairsDown.Draw(mapConsole, this);
 
             // Keep an index so we know which position to draw monster stats at
             int i = 0;
@@ -233,6 +238,33 @@ namespace Rogue.Core
 
                 Game.MessageLog.Add($"{actor.Name} opened a door");
             }
+        }
+
+        public static HandEquipment returnChance()
+        {
+            Random rnd = new Random();
+            int chance = rnd.Next(100);
+            HandEquipment hand = HandEquipment.None();
+            if (chance <= 20)
+            {
+                hand = HandEquipment.Dagger();
+            }
+            else if (chance > 20 && chance <= 30)
+            {
+                hand = HandEquipment.Sword();
+            }
+            else if (chance >= 70 && chance <= 80)
+            {
+                hand = HandEquipment.Axe();
+            }
+            else if (chance >= 98)
+            {
+                hand = HandEquipment.TwoHandedSword();
+            } else
+            {
+                hand = HandEquipment.None();
+            }
+            return hand;
         }
 
     }

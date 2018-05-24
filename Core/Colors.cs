@@ -10,7 +10,7 @@ using RLNET;
 
 namespace Rogue.Core
 {
-    class Colors
+    public class Colors
     {
         public static RLColor FloorBackground = RLColor.Black;
         public static RLColor Floor = Swatch.AlternateDarkest;
@@ -39,5 +39,6 @@ namespace Rogue.Core
         public static RLColor Door = Swatch.ComplimentLighter;
         public static RLColor DoorBackgroundFov = Swatch.ComplimentDarker;
         public static RLColor DoorFov = Swatch.ComplimentLightest;
+        public static RLColor InventoryHeading = Swatch.DbLight;
     }
 }

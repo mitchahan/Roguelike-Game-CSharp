@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Rogue.Core;
+using Rogue.Equipment;
 using Rogue.Systems;
 using Rogue.Interfaces;
 using RLNET;
@@ -41,5 +42,17 @@ namespace Rogue.Core
             statConsole.Print(1, 11, $"Defense: {Defense} ({DefenseChance}%)", Colors.Text);
             statConsole.Print(1, 13, $"Gold:   {Gold}", Colors.Gold);
         }
+
+        public void DrawInventory(RLConsole inventoryConsole)
+        {
+            inventoryConsole.Print(1, 1, "Equipment", Colors.InventoryHeading);
+            inventoryConsole.Print(1, 3, $"Head: {Head.Name}", Head == HeadEquipment.None() ? Swatch.DbOldStone : Swatch.DbLight);
+            inventoryConsole.Print(1, 5, $"Body: {Body.Name}", Body == BodyEquipment.None() ? Swatch.DbOldStone : Swatch.DbLight);
+            inventoryConsole.Print(1, 7, $"Hand: {Hand.Name}", Hand == HandEquipment.None() ? Swatch.DbOldStone : Swatch.DbLight);
+            inventoryConsole.Print(1, 9, $"Feet: {Feet.Name}", Feet == FeetEquipment.None() ? Swatch.DbOldStone : Swatch.DbLight);
+        }
+
+
+
     }
 }
