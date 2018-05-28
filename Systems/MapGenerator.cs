@@ -1,9 +1,7 @@
 ﻿using RogueSharp;
 using Rogue.Core;
-using RLNET;
 using System.Linq;
 using Rogue.Monsters;
-using Rogue.Systems;
 using RogueSharp.DiceNotation;
 using System.Collections.Generic;
 
@@ -11,12 +9,13 @@ namespace Rogue.Systems
 {
     public class MapGenerator
     {
+        // Parameters of a map
         private readonly int _width;
         private readonly int _height;
         private readonly int _maxRooms;
         private readonly int _roomMaxSize;
         private readonly int _roomMinSize;
-        
+        private readonly int _mapLevel;
 
         private readonly DungeonMap _map;
 
@@ -29,9 +28,10 @@ namespace Rogue.Systems
             _roomMaxSize = roomMaxSize;
             _roomMinSize = roomMinSize;
             _map = new DungeonMap();
-            //_mapLevel = mapLevel;
+            _mapLevel = mapLevel;
         }
 
+        // Level ending and beginning point
         private void CreateStairs()
         {
             _map.StairsUp = new Stairs
@@ -122,6 +122,8 @@ namespace Rogue.Systems
             return _map;
         }
 
+        // Chooses a place to place the player on the map
+        // Change later so monsters don't spawn in spawn room? or at least not on first level?
         private void PlacePlayer()
         {
             Player player = Game.Player;
@@ -136,6 +138,8 @@ namespace Rogue.Systems
             _map.AddPlayer(player);
         }
 
+
+        // Creates a rectangular dungeon room
         private void CreateRoom(Rectangle room)
         {
             for (int x = room.Left + 1; x < room.Right; x++)
@@ -147,6 +151,7 @@ namespace Rogue.Systems
             }
         }
 
+        // Carve a tunnel out of the map parallel to the x-axis
         private void CreateHorizontalTunnel(int xStart, int xEnd, int yPosition)
         {
             for (int x = System.Math.Min(xStart, xEnd); x <= System.Math.Max(xStart, xEnd); x++)
@@ -164,6 +169,8 @@ namespace Rogue.Systems
             }
         }
 
+        // Places monsters all over the dungeon level
+        // Change later so monsters don't spawn in spawn room? or at least not on first level?
         private void PlaceMonsters()
         {
             foreach (var room in _map.Rooms)
@@ -181,16 +188,17 @@ namespace Rogue.Systems
                         // In that case skip creating the monster
                         if (randomRoomLocation != null)
                         {
-                            // Temporarily hard code this monster to be created at level 1
 
-                            var typeOfMonster = Dice.Roll("1D10");
+                            var typeOfMonster = Dice.Roll("2D10");
                             var monster = new Monster();
-                            if (typeOfMonster <=8)
+                            if (typeOfMonster <= 10)
                             {
-                                monster = Kobold.Create(1);
-                            } else if (typeOfMonster > 8)
+                                monster = Kobold.Create(_mapLevel);
+                            } else if (typeOfMonster > 12)
                             {
-                                monster = Goblin.Create(1);
+                                monster = Goblin.Create(_mapLevel);
+                            } else if (typeOfMonster > 10 && typeOfMonster <= 12) {
+                                monster = Mimic.Create(_mapLevel);
                             }// Add more monsters later
                             
                             monster.X = randomRoomLocation.X;
@@ -202,6 +210,7 @@ namespace Rogue.Systems
             }
         }
 
+        // Create the doors for each room
         private void CreateDoors(Rectangle room)
         {
             // The the boundries of the room

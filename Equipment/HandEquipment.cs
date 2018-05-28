@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Rogue.Equipment
 {
     public class HandEquipment : Core.Equipment
     {
         public static HandEquipment None()
         {
-            return new HandEquipment { Name = "nothing" };
+            return new HandEquipment { Name = "Nothing" };
         }
 
         public static HandEquipment Dagger()

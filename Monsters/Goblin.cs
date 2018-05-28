@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rogue.Core;
-using Rogue.Equipment;
-using RLNET;
-using RogueSharp;
+﻿using Rogue.Core;
 using RogueSharp.DiceNotation;
 
 namespace Rogue.Monsters
 {
     public class Goblin : Monster
     {
+        // Creates a new Goblin of specific map level
         public static Goblin Create(int level)
         {
 

@@ -75,6 +75,7 @@
     <Compile Include="Interfaces\IScheduleable.cs" />
     <Compile Include="Monsters\Goblin.cs" />
     <Compile Include="Monsters\Kobold.cs" />
+    <Compile Include="Monsters\Mimic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\CommandSystem.cs" />
     <Compile Include="Systems\MapGenerator.cs" />
@@ -90,5 +91,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

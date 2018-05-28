@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using RLNET;
-using Rogue.Equipment;
 using RogueSharp;
 
 namespace Rogue.Core
@@ -42,6 +40,7 @@ namespace Rogue.Core
             }
         }
 
+        // If the player is on the stairs he can go down a level
         public bool CanMoveDownToNextLevel()
         {
             Player player = Game.Player;
@@ -81,15 +80,17 @@ namespace Rogue.Core
             Game.SchedulingSystem.Add(player);
         }
 
+        // Add a monster to the level
         public void AddMonster(Monster monster)
         {
-            monster.Hand = returnChance();
+            //monster.Hand = returnChance();
             _monsters.Add(monster);
             // After adding the monster to the map make sure to make the cell not walkable
             SetIsWalkable(monster.X, monster.Y, false);
             Game.SchedulingSystem.Add(monster);
         }
 
+        // Remove a monster from the level
         public void RemoveMonster(Monster monster)
         {
             _monsters.Remove(monster);
@@ -239,33 +240,5 @@ namespace Rogue.Core
                 Game.MessageLog.Add($"{actor.Name} opened a door");
             }
         }
-
-        public static HandEquipment returnChance()
-        {
-            Random rnd = new Random();
-            int chance = rnd.Next(100);
-            HandEquipment hand = HandEquipment.None();
-            if (chance <= 20)
-            {
-                hand = HandEquipment.Dagger();
-            }
-            else if (chance > 20 && chance <= 30)
-            {
-                hand = HandEquipment.Sword();
-            }
-            else if (chance >= 70 && chance <= 80)
-            {
-                hand = HandEquipment.Axe();
-            }
-            else if (chance >= 98)
-            {
-                hand = HandEquipment.TwoHandedSword();
-            } else
-            {
-                hand = HandEquipment.None();
-            }
-            return hand;
-        }
-
     }
 }

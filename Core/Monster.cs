@@ -2,16 +2,11 @@
 using RLNET;
 using Rogue.Behaviors;
 using Rogue.Systems;
-using Rogue.Equipment;
 
 namespace Rogue.Core
 {
     public class Monster : Actor
     {
-        /*public HeadEquipment Head { get; set; }
-        public BodyEquipment Body { get; set; }
-        public HandEquipment Hand { get; set; }
-        public FeetEquipment Feet { get; set; }*/
 
         public int? TurnsAlerted { get; set; }
 

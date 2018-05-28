@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Rogue.Equipment
 {
     public class FeetEquipment : Core.Equipment
     {
         public static FeetEquipment None()
         {
-            return new FeetEquipment { Name = "None" };
+            return new FeetEquipment { Name = "Nothing" };
         }
 
         public static FeetEquipment Leather()

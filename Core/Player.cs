@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rogue.Core;
-using Rogue.Equipment;
-using Rogue.Systems;
-using Rogue.Interfaces;
+﻿using Rogue.Equipment;
 using RLNET;
 
 

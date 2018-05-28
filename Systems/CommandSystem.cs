@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using RLNET;
 using RogueSharp;
-using Rogue.Systems;
 using Rogue.Core;
 using RogueSharp.DiceNotation;
 using Rogue.Interfaces;
-using Rogue.Behaviors;
 using Rogue.Monsters;
 using Rogue.Equipment;
 
@@ -24,6 +18,7 @@ namespace Rogue.Systems
             IsPlayerTurn = false;
         }
 
+        // Happens when monster is created and sees player
         public void ActivateMonsters()
         {
             IScheduleable scheduleable = Game.SchedulingSystem.Get();
@@ -46,6 +41,7 @@ namespace Rogue.Systems
             }
         }
 
+        //Moves the monster towards the player, pathfinding
         public void MoveMonster(Monster monster, Cell cell)
         {
             if (!Game.DungeonMap.SetActorPosition(monster, cell.X, cell.Y))
@@ -57,6 +53,7 @@ namespace Rogue.Systems
             }
         }
 
+        // Handles the key presses of the player
         public bool MovePlayer( Direction direction )
         {
             int x = Game.Player.X;
@@ -95,6 +92,8 @@ namespace Rogue.Systems
 
             return false;
         }
+
+        // Handles an attack by the player or monster
         public void Attack(Actor attacker, Actor defender)
         {
             StringBuilder attackMessage = new StringBuilder();
@@ -210,9 +209,42 @@ namespace Rogue.Systems
                 Game.MessageLog.Add($"  {defender.Name} was slashed to bits!!");
                 Game.MessageLog.Add($" {defender.Name} dropped {defender.Gold} gold!");
                 Game.Player.Gold += defender.Gold;
-                Game.MessageLog.Add($" {defender.Name} dropped {defender.Hand.Name}!");
-                Game.Player.Hand = defender.Hand;
+
+                HandEquipment chance = returnChance(defender);
+
+                Game.MessageLog.Add($" {defender.Name} dropped {chance.Name}!");
+                Game.Player.Hand = chance;
             }
+        }
+
+        // Calculates whether or not the monster has an item on them, and delivers that to the player
+        public static HandEquipment returnChance(Actor defender)
+        {
+            int chance = Dice.Roll("10D10");
+            HandEquipment hand = HandEquipment.None();
+            if (!(defender is Mimic)) {
+                if (chance <= 20)
+                {
+                    hand = HandEquipment.Dagger();
+                }
+                else if (chance > 20 && chance <= 30)
+                {
+                    hand = HandEquipment.Sword();
+                }
+                else if (chance >= 70 && chance <= 80)
+                {
+                    hand = HandEquipment.Axe();
+                }
+                else if (chance >= 95)
+                {
+                    hand = HandEquipment.TwoHandedSword();
+                }
+                else
+                {
+                    hand = HandEquipment.None();
+                }
+            }
+            return hand;
         }
 
     }

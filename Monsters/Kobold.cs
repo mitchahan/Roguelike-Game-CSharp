@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rogue.Core;
-using RLNET;
-using RogueSharp;
+﻿using Rogue.Core;
 using RogueSharp.DiceNotation;
-using Rogue.Equipment;
 
 namespace Rogue.Monsters
 {
     public class Kobold : Monster
     {
+        // Creates a new Kobold of specific map level
         public static Kobold Create(int level)
         {
             int health = Dice.Roll("2D5");
-            //HandEquipment hand = HandEquipment.Dagger(); // For Testing
             return new Kobold
             {
                 Attack = Dice.Roll("1D3") + level / 3,

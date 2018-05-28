@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RogueSharp;
-using Rogue.Systems;
-using RLNET;
+﻿using RLNET;
 
 
 namespace Rogue.Core
 {
     public class Colors
     {
+        // Room colors
         public static RLColor FloorBackground = RLColor.Black;
         public static RLColor Floor = Swatch.AlternateDarkest;
         public static RLColor FloorBackgroundFov = Swatch.DbDark;
@@ -22,14 +16,15 @@ namespace Rogue.Core
         public static RLColor WallBackgroundFov = Swatch.SecondaryDarker;
         public static RLColor WallFov = Swatch.SecondaryLighter;
 
-        //public static RLColor TextHeading = Swatch.DbLight;
-
+        // Player color duhhhh
         public static RLColor Player = Swatch.DbLight;
 
+        // Text colors
         public static RLColor TextHeading = RLColor.White;
         public static RLColor Text = Swatch.DbLight;
         public static RLColor Gold = Swatch.DbSun;
         public static RLColor Level = Swatch.DbDeepWater;
+        public static RLColor InventoryHeading = Swatch.DbLight;
 
         //Monsters
         public static RLColor KoboldColor = Swatch.DbBrightWood;
@@ -39,6 +34,5 @@ namespace Rogue.Core
         public static RLColor Door = Swatch.ComplimentLighter;
         public static RLColor DoorBackgroundFov = Swatch.ComplimentDarker;
         public static RLColor DoorFov = Swatch.ComplimentLightest;
-        public static RLColor InventoryHeading = Swatch.DbLight;
     }
 }

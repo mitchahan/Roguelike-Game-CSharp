@@ -1,9 +1,6 @@
 ﻿using RLNET;
 using Rogue.Core;
 using Rogue.Systems;
-using Rogue.Interfaces;
-using Rogue.Behaviors;
-using RogueSharp;
 using System;
 using RogueSharp.Random;
 
@@ -38,21 +35,17 @@ namespace Rogue
         private static RLConsole _inventoryConsole;
 
         public static DungeonMap DungeonMap { get; private set; }
+        public static IRandom Random { get; private set; } // For generating the level seed
+        private static int _mapLevel = 1;
 
         public static Player Player { get;  set; }
 
-        private static bool _renderRequired = true;
-
         public static CommandSystem CommandSystem { get; private set; }
         public static SchedulingSystem SchedulingSystem { get; private set; }
-
-        public static IRandom Random { get; private set; }
-
         public static MessageLog MessageLog { get; private set; }
-        private static int _mapLevel = 1;
+        private static bool _renderRequired = true;
 
 
-        //private static int _steps = 0;
 
         public static void Main()
         {
@@ -108,6 +101,7 @@ namespace Rogue
             bool didPlayerAct = false;
             RLKeyPress keyPress = _rootConsole.Keyboard.GetKeyPress();
 
+            // Handles player movement and turns by characters
             if (CommandSystem.IsPlayerTurn)
             {
                 if (keyPress != null)
@@ -164,11 +158,13 @@ namespace Rogue
         {
             if (_renderRequired)
             {
+                // Clear the consoles for a new level
                 _mapConsole.Clear();
                 _statConsole.Clear();
                 _messageConsole.Clear();
                 _inventoryConsole.Clear();
 
+                // Draw everything to the map
                 DungeonMap.Draw(_mapConsole, _statConsole);
                 Player.Draw(_mapConsole, DungeonMap);
                 Player.DrawStats(_statConsole, _statWidth, _statHeight);

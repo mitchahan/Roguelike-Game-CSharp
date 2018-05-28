@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rogue.Core;
-
+﻿
 namespace Rogue.Equipment
 {
     public class HeadEquipment : Core.Equipment
     {
         public static HeadEquipment None()
         {
-            return new HeadEquipment { Name = "None" };
+            return new HeadEquipment { Name = "Nothing" };
         }
 
         public static HeadEquipment Leather()
