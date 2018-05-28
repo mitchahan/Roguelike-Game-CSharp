@@ -18,8 +18,7 @@ This Project was created using multiple libraries in Visual Studio
 ## To Add
 * More Monsters!
 * An acceptable start screen and home room
-* The ability to pick up items (gold) off of enemies
-* add armor and a shop to the game
+* add a shop to the game
 
 ## Known Bugs
 * Some hallway generation is whack
