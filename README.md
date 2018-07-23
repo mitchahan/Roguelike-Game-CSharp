@@ -24,3 +24,6 @@ This Project was created using multiple libraries in Visual Studio
 * Some hallway generation is whack
 * Monsters spawn in starting room sometimes, may or may not change that
 * When weapon is generated for a monster it chooses the same weapon for evey other monster
+
+# I HAVE PAUSED RECENT DEV OF THIS PROJECT
+I realize that it is not the best use of my time to learn every language possible, so when I have free time I will be restarting this project in either C++ or Java, or maybe JS to further my knowledge of the languages I already know. Also, other projects have become more important recently as this is more of a side thing for fun.
