@@ -3,8 +3,7 @@ This is a tutorial project I followed that guides you through creating a Rogueli
 The tutorial can be found here: https://roguesharp.wordpress.com/
     
 # I HAVE PAUSED RECENT DEV OF THIS PROJECT
-I realize that it is not the best use of my time to learn every language possible, so when I have free time I will be restarting this project in either C++ or Java, or maybe JS to further my knowledge of the languages I already know. Also, other projects have become more important recently as this is more of a side thing for fun.    
-
+I realize that it is not the best use of my time to learn every language possible, especially since this project is so heavily dependant on RogueSharp. So when I have free time I will be restarting this project from scratch, and deploying it in a more professional way, also allowing me to customize it even more. Also, other projects have become more important recently as this is more of a side thing for fun.    
 ## Libraries
 This Project was created using multiple libraries in Visual Studio
 
